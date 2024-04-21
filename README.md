@@ -11,7 +11,9 @@ This project explores the phenomenon of polyploidy in two Arabidopsis species: *
 
 ### Installation
 This project requires Python, R and several dependencies. Many of the dependencies used in this project can be easily installed via pip command for all common operating systems by using terminal or PowerShell.
+
 If you are working on windows machine before using pip command installing python3.12.1 essential and can be easily installed from: [(https://www.python.org/downloads/release/python-3121/)](https://www.python.org/downloads/release/python-3121/)
+
 In this project we have used R statistical programming language. R version 4.3.2 can be installed from: [(https://cran.r-project.org/bin/windows/base/old/4.3.2/)](https://cran.r-project.org/bin/windows/base/old/4.3.2/)
 
 ```bash
