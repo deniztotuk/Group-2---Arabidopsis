@@ -9,7 +9,7 @@ This project explores the phenomenon of polyploidy in two Arabidopsis species: *
 - To analyze allele frequency spectra across normal *arenosa* populations, autohexaploid *lyrata* populations, and their hybrids to determine differences and implications for survival and diversity.
 - To explore the possibility of hybrids exhibiting greater genetic diversity, comparing them to pure populations and assessing if they resemble pseudo-allopolyploids.
 
-## Installation
+### Installation
 This project requires Python, R and several dependencies:
 
 ```bash
@@ -28,7 +28,7 @@ For input and output we primarily handle VCF files. Please ensure all filenames 
 
 # Initial Data Preparation
 Filtering VCF Files
-The initial VCF files are filtered using GATK's SelectVariants to include only specific samples. This step is crucial for reducing data complexity and focusing analysis on relevant populations. Script is created by 
+The initial VCF files are filtered using GATK's SelectVariants to include only specific samples. This step is crucial for reducing data complexity and focusing analysis on relevant populations. Script is created by Jasmin Kuar.
 
 ```bash
 # Activate the GATK environment
@@ -46,15 +46,47 @@ gatk SelectVariants \
 -sn KEH-01tl -sn KEH-04tl -sn KEH-05tl -sn KEH-10tl \
 -O /workhere/students_2023/Levi_resources/group2/filtered_2.vcf
 ```
-Identifying Common Sites
-
-Identify common genomic sites between two datasets:
+Identify common genomic sites between two datasets. Script is created by Kavithi Jayasundara.
 ```bash
 Copy code
 awk 'NR==FNR {common[$1,$2]; next} ($1,$2) in common' lyrata_272_with_some_hybrids.txt arenosa_632.txt > common_sites.txt
 ```
+Python script for converting VCF to Phylip format for doing phylogenetic analysis using SplitsTree.
+```python
+import pysam
+import sys
+
+def vcf_to_phylip(vcf_file, output_file):
+    vcf = pysam.VariantFile(vcf_file)
+    samples = list(vcf.header.samples)
+    sequence_data = {sample: [] for sample in samples}
+
+    for record in vcf:
+        alleles = [record.ref] + list(record.alts)
+        for sample in samples:
+            genotype = record.samples[sample]['GT']
+            if None in genotype:  # Handle missing data
+                sequence_data[sample].append('N')
+            else:
+                sequence_data[sample].append(alleles[genotype[0]])
+
+    with open(output_file, 'w') as f:
+        f.write(f"{len(samples)} {len(sequence_data[samples[0]])}\n")
+        for sample, sequence in sequence_data.items():
+            f.write(f"{sample} {''.join(sequence)}\n")
+
+if __name__ == "__main__":
+    vcf_to_phylip(sys.argv[1], sys.argv[2])
+```
+
+Command for converting VCF to Phylip format for doing phylogenetic analysis using SplitsTree.
+```bash
+chmod +x vcf_to_phylip.py
+./vcf2phylip.py -i fully_final_filtered.vcf.gz -n --output-prefix final_output
+```
+
 # Allele Frequency Histogram
-This script calculates and plots the allele frequency histogram for the BZD population. Ensure you have the fully_final_filtered.vcf.gz ready.
+This script calculates and plots the allele frequency histogram for the BZD population. Ensure you have the fully_final_filtered.vcf.gz ready. Script is created by Kavithi Jayasundara.
 
 ```bash
 # Extract individual and population names
@@ -70,6 +102,14 @@ ggplot(data = df, aes(x = BZD)) +
   geom_histogram(color = 'black', fill = 'white', bins = 10, breaks = seq(0, 1, by = 0.1)) +
   labs(title = "Allele Frequency Histogram for BZD Population", x = "Allele Frequency", y = "F
 ```
+# Phylogenetic Analysis Using Splits Tree
+This script describes how to run the SplitsTree software for phylogenetic analysis using a shell script.
+```bash
+#!/bin/bash
+# Command to run SplitsTree
+splitstree -g -i $INPUT_PHYLIP -o $OUTPUT_NEXUS
+```
+
 
 # Site Frequency Spectrum Calculation
 This script calculates and plots the Site Frequency Spectrum (SFS) for each species using the dadi Python package. Script is created by Deniz Totuk.
@@ -112,4 +152,6 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 ```
+
+
 
