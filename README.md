@@ -24,7 +24,7 @@ pip install dadi==2.3.3
 pip install pysam==0.22.0
 pip install pandas==2.2.2
 ```
-Ins
+
 ### Data
 This project uses VCF files from 632 Arabidopsis arenosa individuals and 272 Arabidopsis lyrata individuals (including hybrids). The data is analyzed to understand genetic diversity and differentiation metrics.
 
