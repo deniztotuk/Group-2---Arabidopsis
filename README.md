@@ -142,7 +142,6 @@ def plot_sfs(sfs, label):
     """Plots the SFS."""
     plt.plot(range(1, len(sfs)), sfs[1:], label=label, marker='o')
 
-# Example usage
 arenosa_counts = read_allele_counts('arenosa_for_sfs.txt')
 lyrata_counts = read_allele_counts('lyrata_for_sfs.txt')
 projection_size = 20
