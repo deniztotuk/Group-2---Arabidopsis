@@ -60,30 +60,44 @@ awk 'NR==FNR {common[$1,$2]; next} ($1,$2) in common' lyrata_272_with_some_hybri
 ```
 Python script for converting VCF to Phylip format for doing phylogenetic analysis using SplitsTree. Script is created by Deniz Totuk.
 ```python
+# Import necessary libraries: pysam for handling VCF files and sys for accessing command-line arguments.
 import pysam
 import sys
 
+# Define the function vcf_to_phylip which takes two parameters: the input VCF file and the output Phylip file.
 def vcf_to_phylip(vcf_file, output_file):
+    # Open the VCF file using pysam.
     vcf = pysam.VariantFile(vcf_file)
+    # Extract sample names from the VCF file's header.
     samples = list(vcf.header.samples)
+    # Initialize a dictionary to hold sequence data for each sample.
     sequence_data = {sample: [] for sample in samples}
 
+    # Iterate over each record (variant) in the VCF file.
     for record in vcf:
+        # Store the reference and all alternate alleles of the variant.
         alleles = [record.ref] + list(record.alts)
+        # Iterate over each sample to determine the genotype and corresponding allele sequence.
         for sample in samples:
             genotype = record.samples[sample]['GT']
+            # Check if genotype information is missing and handle it by adding 'N' (common symbol for unknown).
             if None in genotype:  # Handle missing data
                 sequence_data[sample].append('N')
             else:
+                # Add the allele corresponding to the first allele of the genotype tuple.
                 sequence_data[sample].append(alleles[genotype[0]])
 
+    # Open the output file for writing.
     with open(output_file, 'w') as f:
+        # Write the header of the Phylip file, which includes the number of samples and the length of the sequences.
         f.write(f"{len(samples)} {len(sequence_data[samples[0]])}\n")
+        # Write the sequence data for each sample.
         for sample, sequence in sequence_data.items():
             f.write(f"{sample} {''.join(sequence)}\n")
 
+# Check if the script is executed directly (i.e., not imported as a module), and if so, call the function with command-line arguments.
 if __name__ == "__main__":
-    vcf_to_phylip(sys.argv[1], sys.argv[2])
+    vcf_to_phylip(sys.argv[1], sys.argv[2])  # sys.argv[1] is the input VCF file, sys.argv[2] is the output Phylip file
 ```
 
 Command for converting VCF to Phylip format for doing phylogenetic analysis using SplitsTree.
