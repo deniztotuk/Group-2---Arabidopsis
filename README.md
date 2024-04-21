@@ -46,5 +46,70 @@ gatk SelectVariants \
 -sn KEH-01tl -sn KEH-04tl -sn KEH-05tl -sn KEH-10tl \
 -O /workhere/students_2023/Levi_resources/group2/filtered_2.vcf
 ```
+Identifying Common Sites
 
+Identify common genomic sites between two datasets:
+```bash
+Copy code
+awk 'NR==FNR {common[$1,$2]; next} ($1,$2) in common' lyrata_272_with_some_hybrids.txt arenosa_632.txt > common_sites.txt
+```
+# Allele Frequency Histogram
+This script calculates and plots the allele frequency histogram for the BZD population. Ensure you have the fully_final_filtered.vcf.gz ready.
+
+```bash
+# Extract individual and population names
+bcftools query -l fully_final_filtered.vcf.gz | awk -F '-' '{print $0 "\t" $1}' | sort -k1,1 > pops_complete.txt
+
+# Compile and run the frequency analysis
+gcc poly_freq.c -o poly_freq -lm
+./poly_freq -vcf fully_final_filtered.vcf -pops pops_complete.txt > info_final.tsv
+
+# Plot the histogram using R
+df <- read.table(file ='info_final.tsv', header = TRUE, sep = '\t')
+ggplot(data = df, aes(x = BZD)) +
+  geom_histogram(color = 'black', fill = 'white', bins = 10, breaks = seq(0, 1, by = 0.1)) +
+  labs(title = "Allele Frequency Histogram for BZD Population", x = "Allele Frequency", y = "F
+```
+
+# Site Frequency Spectrum Calculation
+This script calculates and plots the Site Frequency Spectrum (SFS) for each species using the dadi Python package. Script is created by Deniz Totuk.
+
+```python
+import numpy as np
+import dadi
+import matplotlib.pyplot as plt
+
+def read_allele_counts(file_path):
+    """Reads allele counts from a file; each line is an allele count at a site."""
+    with open(file_path, 'r') as f:
+        counts = [int(line.strip()) for line in f if line.strip()]
+    return counts
+
+def calculate_sfs(allele_counts, projection):
+    """Calculates the unfolded SFS from allele counts."""
+    fs = dadi.Spectrum(allele_counts)
+    fs_projected = fs.project([projection])
+    return fs_projected
+
+def plot_sfs(sfs, label):
+    """Plots the SFS."""
+    plt.plot(range(1, len(sfs)), sfs[1:], label=label, marker='o')
+
+# Example usage
+arenosa_counts = read_allele_counts('arenosa_for_sfs.txt')
+lyrata_counts = read_allele_counts('lyrata_for_sfs.txt')
+projection_size = 20
+arenosa_sfs = calculate_sfs(arenosa_counts, projection_size)
+lyrata_sfs = calculate_sfs(lyrata_counts, projection_size)
+
+plt.figure(figsize=(8, 6))
+plot_sfs(arenosa_sfs, 'Arenosa')
+plot_sfs(lyrata_sfs, 'Lyrata')
+plt.xlabel('Derived allele frequency')
+plt.ylabel('Count')
+plt.title('Site Frequency Spectrum (SFS)')
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
 
