@@ -55,7 +55,6 @@ gatk SelectVariants \
 ```
 Identify common genomic sites between two datasets. Script is created by Kavithi Jayasundara.
 ```bash
-Copy code
 awk 'NR==FNR {common[$1,$2]; next} ($1,$2) in common' lyrata_272_with_some_hybrids.txt arenosa_632.txt > common_sites.txt
 ```
 Python script for converting VCF to Phylip format for doing phylogenetic analysis using SplitsTree. Script is created by Deniz Totuk.
