@@ -158,7 +158,7 @@ plt.show()
 1. Harris, Charles R., et al. "Array programming with NumPy." Nature 585.7825 (2020): 357-362. Available at: [https://numpy.org](https://numpy.org)
 2. McKinney, Wes. "Data Structures for Statistical Computing in Python." Proceedings of the 9th Python in Science Conference. 2010. Available at: [https://pandas.pydata.org](https://pandas.pydata.org)
 3. Hunter, John D. "Matplotlib: A 2D Graphics Environment." Computing in Science & Engineering 9.03 (2007): 90-95. Available at: [https://matplotlib.org](https://matplotlib.org)
-
 5. Gutenkunst, Ryan N., et al. "Inferring the joint demographic history of multiple populations from multidimensional SNP frequency data." PLoS Genetics 5.10 (2009): e1000695. Available at: [https://dadi.readthedocs.io/en/latest/](https://dadi.readthedocs.io/en/latest/)
-
+6. Heger, Andreas, and Sean R. Eddy. "pysam: a Python library for working with SAM/BAM/CRAM formats." Available at: [https://github.com/pysam-developers/pysam](https://github.com/pysam-developers/pysam)
+7. Van Rossum, Guido, and Drake, Fred L. Jr., "Python 3 Reference Manual", Python Software Foundation, 2009. Available at: [https://docs.python.org/3/library/sys.html](https://docs.python.org/3/library/sys.html)
 
