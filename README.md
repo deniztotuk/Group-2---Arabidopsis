@@ -3,7 +3,7 @@
 #### Analysis of Polyploidy in Arabidopsis Species
 
 ## Overview
-This project explores the phenomenon of polyploidy in two Arabidopsis species: *Arabidopsis arenosa* and *Arabidopsis lyrata*. Our research focuses on understanding how independently formed autopolyploids in these species may have exchanged adaptive alleles of meiosis proteins, potentially influencing their evolutionary trajectories and rescuing at least one species from extinction.
+This project explores the phenomenon of polyploidy in two Arabidopsis species: *Arabidopsis arenosa* and *Arabidopsis lyrata*. Our research focuses on understanding how independently formed autopolyploids in these species may have exchanged adaptive alleles , potentially influencing their evolutionary trajectories.
 
 ### Objectives
 - To analyze allele frequency spectra across normal *arenosa* populations, autohexaploid *lyrata* populations, and their hybrids to determine differences and implications for survival and diversity.
@@ -18,4 +18,6 @@ pip install matplotlib==3.4.3
 pip install numpy==1.19.5
 # Add additional dependencies as necessary
 ```
+
+
 
