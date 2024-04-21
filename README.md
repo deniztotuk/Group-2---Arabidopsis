@@ -14,9 +14,11 @@ This project requires Python, R and several dependencies:
 
 ```bash
 # Install required Python packages
-pip install matplotlib==3.4.3
-pip install numpy==1.19.5
-# Add additional dependencies as necessary
+pip install matplotlib==3.8.3
+pip install numpy==1.26.0
+pip install dadi==2.3.3
+pip install pysam==0.22.0
+pip install pandas==2.2.2
 ```
 ### Data
 This project uses VCF files from 632 Arabidopsis arenosa individuals and 272 Arabidopsis lyrata individuals (including hybrids). The data is analyzed to understand genetic diversity and differentiation metrics.
@@ -107,7 +109,7 @@ This script describes how to run the SplitsTree software for phylogenetic analys
 ```bash
 #!/bin/bash
 # Command to run SplitsTree
-splitstree -g -i $INPUT_PHYLIP -o $OUTPUT_NEXUS
+splitstree -g -i $final_output.phyphilp -o $final_output.nexus
 ```
 
 
