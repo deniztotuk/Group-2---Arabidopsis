@@ -10,7 +10,9 @@ This project explores the phenomenon of polyploidy in two Arabidopsis species: *
 - To explore the possibility of hybrids exhibiting greater genetic diversity, comparing them to pure populations and assessing if they resemble pseudo-allopolyploids.
 
 ### Installation
-This project requires Python, R and several dependencies:
+This project requires Python, R and several dependencies. Many of the dependencies used in this project can be easily installed via pip command for all common operating systems by using terminal or PowerShell.
+If you are working on windows machine before using pip command installing python3.12.1 essential and can be easily installed from: [(https://www.python.org/downloads/release/python-3121/)](https://www.python.org/downloads/release/python-3121/)
+In this project we have used R statistical programming language. R version 4.3.2 can be installed from: [(https://cran.r-project.org/bin/windows/base/old/4.3.2/)](https://cran.r-project.org/bin/windows/base/old/4.3.2/)
 
 ```bash
 # Install required Python packages
@@ -20,6 +22,7 @@ pip install dadi==2.3.3
 pip install pysam==0.22.0
 pip install pandas==2.2.2
 ```
+Ins
 ### Data
 This project uses VCF files from 632 Arabidopsis arenosa individuals and 272 Arabidopsis lyrata individuals (including hybrids). The data is analyzed to understand genetic diversity and differentiation metrics.
 
@@ -163,4 +166,8 @@ plt.show()
 5. Gutenkunst, Ryan N., et al. "Inferring the joint demographic history of multiple populations from multidimensional SNP frequency data." PLoS Genetics 5.10 (2009): e1000695. Available at: [https://dadi.readthedocs.io/en/latest/](https://dadi.readthedocs.io/en/latest/)
 6. Heger, Andreas, and Sean R. Eddy. "pysam: a Python library for working with SAM/BAM/CRAM formats." Available at: [https://github.com/pysam-developers/pysam](https://github.com/pysam-developers/pysam)
 7. Van Rossum, Guido, and Drake, Fred L. Jr., "Python 3 Reference Manual", Python Software Foundation, 2009. Available at: [https://docs.python.org/3/library/sys.html](https://docs.python.org/3/library/sys.html)
+8. R Core Team. "R: A language and environment for statistical computing." R Foundation for Statistical Computing, Vienna, Austria, 2021. Available at: [https://www.R-project.org/](https://www.R-project.org/)
+9. RStudio Team. "RStudio: Integrated Development Environment for R." RStudio, PBC, Boston, MA, 2021. Available at: [https://www.rstudio.com/](https://www.rstudio.com/)
+10. Li, Heng, et al. "The Sequence Alignment/Map format and SAMtools." Bioinformatics 25.16 (2009): 2078-2079. Available at: [https://academic.oup.com/bioinformatics/article/25/16/2078/204688](https://academic.oup.com/bioinformatics/article/25/16/2078/204688)
+- "bcftools: Utilities for variant calling and manipulating VCFs and BCFs." Available at: [http://www.htslib.org/doc/bcftools.html](http://www.htslib.org/doc/bcftools.html)
 
