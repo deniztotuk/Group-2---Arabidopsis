@@ -136,40 +136,56 @@ splitstree -g -i $final_output.phyphilp -o $final_output.nexus
 This script calculates and plots the Site Frequency Spectrum (SFS) for each species using the dadi Python package. Script is created by Deniz Totuk.
 
 ```python
+# Import necessary libraries for numerical operations, demographic analysis, and plotting
 import numpy as np
 import dadi
 import matplotlib.pyplot as plt
 
 def read_allele_counts(file_path):
     """Reads allele counts from a file; each line is an allele count at a site."""
+    # Open the file for reading.
     with open(file_path, 'r') as f:
+        # Read lines from the file, strip whitespace, and convert each line to an integer if not empty
         counts = [int(line.strip()) for line in f if line.strip()]
-    return counts
+    return counts  # Return the list of allele counts
 
 def calculate_sfs(allele_counts, projection):
-    """Calculates the unfolded SFS from allele counts."""
+    """Calculates the unfolded Site Frequency Spectrum (SFS) from allele counts."""
+    # Convert the list of allele counts into a dadi Spectrum object
     fs = dadi.Spectrum(allele_counts)
+    # Project the spectrum to a smaller sample size to smooth the spectrum
     fs_projected = fs.project([projection])
-    return fs_projected
+    return fs_projected  # Return the projected spectrum
 
 def plot_sfs(sfs, label):
     """Plots the SFS."""
+    # Plot the SFS using a line plot with markers, skipping the zero index as it's often not informative
     plt.plot(range(1, len(sfs)), sfs[1:], label=label, marker='o')
 
+# Read allele counts from files for two populations
 arenosa_counts = read_allele_counts('arenosa_for_sfs.txt')
 lyrata_counts = read_allele_counts('lyrata_for_sfs.txt')
+
+# Define the size to which the allele counts are projected
 projection_size = 20
+# Calculate the SFS for each population using the defined projection size
 arenosa_sfs = calculate_sfs(arenosa_counts, projection_size)
 lyrata_sfs = calculate_sfs(lyrata_counts, projection_size)
 
+# Set up the plotting area with a specific size
 plt.figure(figsize=(8, 6))
+# Plot the SFS for each population
 plot_sfs(arenosa_sfs, 'Arenosa')
 plot_sfs(lyrata_sfs, 'Lyrata')
+# Set the labels for the axes and the plot title
 plt.xlabel('Derived allele frequency')
 plt.ylabel('Count')
 plt.title('Site Frequency Spectrum (SFS)')
+# Show a legend to identify the populations
 plt.legend()
+# Adjust plot layout for better spacing
 plt.tight_layout()
+# Display the plot
 plt.show()
 ```
 
