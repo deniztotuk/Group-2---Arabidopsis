@@ -51,7 +51,7 @@ Identify common genomic sites between two datasets. Script is created by Kavithi
 Copy code
 awk 'NR==FNR {common[$1,$2]; next} ($1,$2) in common' lyrata_272_with_some_hybrids.txt arenosa_632.txt > common_sites.txt
 ```
-Python script for converting VCF to Phylip format for doing phylogenetic analysis using SplitsTree.
+Python script for converting VCF to Phylip format for doing phylogenetic analysis using SplitsTree. Script is created by Deniz Totuk.
 ```python
 import pysam
 import sys
@@ -103,7 +103,7 @@ ggplot(data = df, aes(x = BZD)) +
   labs(title = "Allele Frequency Histogram for BZD Population", x = "Allele Frequency", y = "F
 ```
 # Phylogenetic Analysis Using Splits Tree
-This script describes how to run the SplitsTree software for phylogenetic analysis using a shell script.
+This script describes how to run the SplitsTree software for phylogenetic analysis using a shell script. Script is created by Kavithi Jayasundara.
 ```bash
 #!/bin/bash
 # Command to run SplitsTree
@@ -153,5 +153,12 @@ plt.tight_layout()
 plt.show()
 ```
 
+## References
+
+1. Harris, Charles R., et al. "Array programming with NumPy." Nature 585.7825 (2020): 357-362. Available at: [https://numpy.org](https://numpy.org)
+2. McKinney, Wes. "Data Structures for Statistical Computing in Python." Proceedings of the 9th Python in Science Conference. 2010. Available at: [https://pandas.pydata.org](https://pandas.pydata.org)
+3. Hunter, John D. "Matplotlib: A 2D Graphics Environment." Computing in Science & Engineering 9.03 (2007): 90-95. Available at: [https://matplotlib.org](https://matplotlib.org)
+
+5. Gutenkunst, Ryan N., et al. "Inferring the joint demographic history of multiple populations from multidimensional SNP frequency data." PLoS Genetics 5.10 (2009): e1000695. Available at: [https://dadi.readthedocs.io/en/latest/](https://dadi.readthedocs.io/en/latest/)
 
 
