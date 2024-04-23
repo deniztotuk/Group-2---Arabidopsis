@@ -20,13 +20,17 @@ In this project we have used R statistical programming language. R version 4.3.2
 # Install required Python packages
 #Installs matplotlib version 3.8.3
 pip install matplotlib==3.8.3
-#Installs Numpy version 1.26.3
+
+#Installs Numpy version 1.26.0
 pip install numpy==1.26.0
+
 #Installs Dadi version 2.3.3
 pip install dadi==2.3.3
-#Installs Pysam version 2.3.3
+
+#Installs Pysam version 0.22.0
 pip install pysam==0.22.0
-#Installs Pandas version 2.3.3
+
+#Installs Pandas version 2.2.2
 pip install pandas==2.2.2
 ```
 
